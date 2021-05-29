@@ -12,6 +12,9 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+        let twitter = SMFeed(name: "twitter", link: "https://takehome.io/twitter")
+        twitter.retrieve()
     }
 
 
