@@ -13,8 +13,9 @@ class SettingsView: UIView {
     var isShowing = false
     
     private let slider = UISlider(frame: CGRect(x: 20, y: 160, width: UIScreen.main.bounds.width-40, height: 20))
-    private let title = UILabel(frame: CGRect(x: 20, y: 80, width: UIScreen.main.bounds.width-40, height: 50))
-    private let distance = UILabel(frame: CGRect(x: 20, y: 80, width: UIScreen.main.bounds.width-40, height: 50))
+    private let title = UILabel(frame: CGRect(x: 20, y: 80, width: UIScreen.main.bounds.width-40, height: 30))
+    private let distance = UILabel(frame: CGRect(x: 20, y: 80, width: UIScreen.main.bounds.width-40, height: 30))
+    private let desc = UILabel(frame: CGRect(x: 20, y: 120, width: UIScreen.main.bounds.width-40, height: 30))
     
     override init(frame: CGRect) {
         super .init(frame: CGRect(x: 0, y: -200, width: UIScreen.main.bounds.width, height: 200))
@@ -22,8 +23,12 @@ class SettingsView: UIView {
         self.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         
         self.addSubview(title)
-        self.title.text = "refresh rate:"
+        self.title.text = "Refresh rate:"
         self.title.font = .systemFont(ofSize: 22, weight: UIFont.Weight(0.4))
+        
+        self.addSubview(desc)
+        self.desc.text = "Adjusts the rate at which new posts are fetched."
+        self.desc.font = .systemFont(ofSize: 14, weight: UIFont.Weight(0.1))
         
         self.addSubview(self.distance)
         self.distance.text = "5 secs"
