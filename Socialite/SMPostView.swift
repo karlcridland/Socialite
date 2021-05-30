@@ -28,6 +28,8 @@ class SMPostView: UIView {
         self.username.setTitleColor(.black, for: .normal)
         
         self.body.text = post.message
+        self.body.isEditable = false
+        
         self.icon.image = UIImage(named: post.platform.rawValue)
         
         self.layer.shadowColor = UIColor.black.cgColor
