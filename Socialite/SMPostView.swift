@@ -49,6 +49,8 @@ class SMPostView: UIView {
         }
     }
     
+    // If a user has twitter downloaded on their phone then it will open the users account in app, alternatively the page will be opened within a broswer.
+    
     @objc func openTwitter(){
         
         let appURL = URL(string: "twitter://user?screen_name=\(self.post.user)")!

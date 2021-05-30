@@ -36,6 +36,7 @@ class ViewController: UIViewController {
         
         ViewController.feedView.showsVerticalScrollIndicator = false
         ViewController.feedView.showsHorizontalScrollIndicator = false
+        
     }
     
     override func viewLayoutMarginsDidChange() {
@@ -44,6 +45,8 @@ class ViewController: UIViewController {
             self.settingsButton.frame = CGRect(x: self.view.frame.width-60, y: superview.layoutMargins.top, width: 50, height: 50)
         }
     }
+    
+    // Pulls down the settings and introduces a cover button to the screen which when clicked will remove the settings.
     
     @objc func showSettings(){
         self.settingsView.isShowing = !self.settingsView.isShowing

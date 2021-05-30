@@ -24,6 +24,8 @@ class SMFeed {
         self.retrieve()
     }
     
+    // Downloads the information provided from the takehome.io/[social media] page and processes it depending on whether it's already been downloaded and whether it's legible ie. is in a json format.
+    
     func retrieve(){
 
         if let link = link{
@@ -35,9 +37,7 @@ class SMFeed {
                         self.showResult(value: String(data: data, encoding: .utf8)!)
                     }
                 }
-                
             }
-
             task.resume()
         }
         
@@ -63,13 +63,14 @@ class SMFeed {
         }
     }
     
+    // Displays the post to the feed wall, taking the lowest y position currently in the scroll view.
+    
     func displayPost(_ post: SMPost) {
         let wall = ViewController.feedView
         let lowestY = wall.subviews.sorted(by: {$0.frame.maxY > $1.frame.maxY}).first?.frame.maxY ?? 0
         let view = SMPostView(frame: CGRect(x: 20, y: 20+(lowestY), width: wall.frame.width-40, height: 100), post: post)
         wall.addSubview(view)
         wall.contentSize = CGSize(width: wall.frame.width, height: view.frame.maxY+20)
-        print(lowestY)
     }
     
     func usernameKey() -> String {
@@ -96,6 +97,9 @@ class SMFeed {
 }
 
 extension String{
+    
+    // Converts a String into a json format.
+    
     func toJSON() -> [Dictionary<String,Any>]? {
         if let data = self.data(using: .utf8){
             do {
