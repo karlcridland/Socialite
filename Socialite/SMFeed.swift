@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 // Social media feed, retrieves the json file from the page.
 
@@ -28,7 +29,12 @@ class SMFeed {
         if let link = link{
             let task = URLSession.shared.dataTask(with: link) {(data, response, error) in
                 guard let data = data else { return }
-                self.showResult(value: String(data: data, encoding: .utf8)!)
+                let queue = DispatchQueue(label: "data loaded")
+                queue.async {
+                    DispatchQueue.main.async {
+                        self.showResult(value: String(data: data, encoding: .utf8)!)
+                    }
+                }
                 
             }
 
@@ -58,7 +64,12 @@ class SMFeed {
     }
     
     func displayPost(_ post: SMPost) {
-//        let view = SMPostView(frame: <#T##CGRect#>, post: post)
+        let wall = ViewController.feedView
+        let lowestY = wall.subviews.sorted(by: {$0.frame.maxY > $1.frame.maxY}).first?.frame.maxY ?? 0
+        let view = SMPostView(frame: CGRect(x: 20, y: 20+(lowestY), width: wall.frame.width-40, height: 100), post: post)
+        wall.addSubview(view)
+        wall.contentSize = CGSize(width: wall.frame.width, height: view.frame.maxY+20)
+        print(lowestY)
     }
     
     func usernameKey() -> String {
