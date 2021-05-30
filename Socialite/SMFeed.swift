@@ -48,13 +48,17 @@ class SMFeed {
             json.forEach { update in
                 if let username = update[self.usernameKey()] as? String, let message = update[self.messageKey()] as? String{
                     let post = SMPost(platform: self.platform, user: username, message: message)
-                    if !updates.contains(where: {$0 == post}){
-                        updates.append(post)
-                        print(update)
+                    if !self.updates.contains(where: {$0 == post}){
+                        self.updates.append(post)
+                        self.displayPost(post)
                     }
                 }
             }
         }
+    }
+    
+    func displayPost(_ post: SMPost) {
+//        let view = SMPostView(frame: <#T##CGRect#>, post: post)
     }
     
     func usernameKey() -> String {
