@@ -29,6 +29,10 @@ class SMPostView: UIView {
         
         self.body.text = post.message
         self.body.isEditable = false
+        self.body.font = .systemFont(ofSize: 15)
+        let height = self.body.frame.minY + self.body.contentSize.height + 5
+        self.frame = CGRect(x: self.frame.minX, y: self.frame.minY, width: self.frame.width, height: height)
+        self.body.frame = CGRect(x: self.body.frame.minX, y: self.body.frame.minY, width: self.body.frame.width, height: self.body.contentSize.height)
         
         self.icon.image = UIImage(named: post.platform.rawValue)
         
